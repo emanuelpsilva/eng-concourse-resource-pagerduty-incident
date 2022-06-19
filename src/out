@@ -36,7 +36,7 @@ if [[ "$rest_api" != 'null' ]]; then
   if [[ "$include_build_link" == 'true' ]]; then
     incident=$(echo "$incident" | jq -c \
       --arg build_url "$build_url" \
-      '. * { "incident" : { "body" : { "details" : (.incident.body.details + " <a href=\"$build_url\">Link to Build</a>") } } }')
+      '. * { "incident" : { "body" : { "details" : .incident.body.details + " <a href=\"$build_url\">Link to Build</a>" } } }')
   fi
 
   # note that --retry correctly retries only on timeouts and 429 (too many requests) not for unretriable errors
